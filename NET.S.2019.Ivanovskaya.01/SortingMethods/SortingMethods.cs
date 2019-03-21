@@ -14,6 +14,9 @@ namespace SortingMethods
         /// <param name="array">Transmitted array for sorting</param>
         public static void Quicksort(int[] array)
         {
+            if (array == null) throw new ArgumentNullException();
+            if (array.Length < 1) throw new ArgumentException();            
+
             quicksort(array, 0, array.Length - 1);
         }
 
@@ -76,6 +79,9 @@ namespace SortingMethods
         /// <param name="array">Transmitted array for sorting</param>
         public static void Mergesort(int[] array)
         {
+            if (array == null) throw new ArgumentNullException();
+            if (array.Length < 1) throw new ArgumentException();
+
             Mergesort(array, 0, array.Length - 1);
         }
 

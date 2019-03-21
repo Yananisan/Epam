@@ -1,3 +1,3 @@
-–еализовать методы быстрой сортировки и сортировки сли€нием дл€
-целочисленного массива. ѕротестировать работу методов в консольном
-приложении или с помощью модульного тестировани€.
+Implement Quick sort and Merge sort methods for
+integer array. Test the work of the methods in the console
+application or using unit testing.
