@@ -48,9 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FilterDigit.cs" />
-    <Compile Include="FindNextBiggerNumber.cs" />
-    <Compile Include="FindNthRoot.cs" />
+    <Compile Include="FilterDigitClass.cs" />
+    <Compile Include="FindNextBiggerNumberClass.cs" />
+    <Compile Include="FindNthRootClass.cs" />
+    <Compile Include="InsertNumberClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\Tests.cs" />
   </ItemGroup>

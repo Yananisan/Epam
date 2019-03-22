@@ -69,5 +69,31 @@ namespace Day2.Tests
 
         #endregion
 
+        #region InsertNumber
+
+        [TestCase(8, 15, 0, 0, ExpectedResult = 9)]
+        [TestCase(15, 15, 0, 0, ExpectedResult = 15)]
+        [TestCase(8, 15, 3, 8, ExpectedResult = 120)]
+        public int InsertNumberTests(int first, int second, int startPos, int endPos) =>
+            InsertNumberClass.InsertNumber(first, second, startPos, endPos);
+
+        [TestCase(8, 15, -1, 0)]
+        [TestCase(15, 15, 0, -1)]
+        [TestCase(8, 15, 32, 0)]
+        [TestCase(8, 15, 0, 32)]
+        public void InsertNumberOutOfRange(int first, int second, int startPos, int endPos)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => InsertNumberClass.InsertNumber(first, second, startPos, endPos));
+        }
+
+        [TestCase(15, 15, 3, 2)]
+        [TestCase(8, 15, 8, 7)]
+        public void InsertNumberArgumentException(int first, int second, int startPos, int endPos)
+        {
+            Assert.Throws<ArgumentException>(() => InsertNumberClass.InsertNumber(first, second, startPos, endPos));
+        }
+
+        #endregion
+
     }
 }
