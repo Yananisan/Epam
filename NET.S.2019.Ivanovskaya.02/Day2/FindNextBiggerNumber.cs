@@ -3,15 +3,15 @@ using System.Diagnostics;
 
 namespace Day2
 {
-    public static class FindNextBiggerNumber
+    public static class FindNextBiggerThanClass
     {
         /// <summary>
-        /// Returns the nearest largest integer consisting of the digits of the original number, 
-        /// and null if no such number exists.
+        /// Finds the nearest largest integer consisting of digits of <paramref name="number"/>.
         /// </summary>
         /// <param name="number">Input number.</param>
         /// <param name="time">Returns TimeSpan of finding number.</param>
-        /// <returns></returns>
+        /// <returns>The nearest number greater than <paramref name="number"/>, which consists 
+        /// of its digits or null if there is no such number</returns>
         public static int? FindNextBiggerThan(int number, out TimeSpan time)
         {
             time = new TimeSpan();
@@ -75,6 +75,6 @@ namespace Day2
             int buf = array[i];
             array[i] = array[j];
             array[j] = buf;
-        }
+        }    
     }
 }

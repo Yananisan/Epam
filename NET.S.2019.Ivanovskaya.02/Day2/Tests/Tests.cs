@@ -18,10 +18,24 @@ namespace Day2.Tests
         [TestCase(3456432, ExpectedResult = 3462345)]
         [TestCase(10, ExpectedResult = -1)]
         [TestCase(20, ExpectedResult = -1)]
-        public int? NextBiggerThanTests(int number) => FindNextBiggerNumber.FindNextBiggerThan(number, out TimeSpan time);
+        public int? FindNextBiggerThanTests(int number) => FindNextBiggerThanClass.FindNextBiggerThan(number, out TimeSpan time);
 
         #endregion
 
+        #region FilterDigit
+
+        [TestCase(7, new int[] { 17, 8, 7 }, ExpectedResult = new int[] { 17, 7 })]
+        [TestCase(int.MaxValue, new int[] { int.MinValue + 1, int.MaxValue, 0 }, ExpectedResult = new int[] { int.MinValue + 1, int.MaxValue })]
+        [TestCase(-1, new int[] { -1, -11, 101, 201 }, ExpectedResult = new int[] { -1, -11, 101, 201 })]   
+        public int[] FilterDigitTests(int number, int[] array) => FilterDigitClass.FilterDigit(number, array);
+
+        [Test]
+        public void CheckOnNull() => Assert.Throws<ArgumentNullException>(() => FilterDigitClass.FilterDigit(-1, null));
+
+        [Test]
+        public void CheckOnEmpty() => Assert.Throws<ArgumentException>(() => FilterDigitClass.FilterDigit(-1, new int[] { }));
+
+        #endregion
 
     }
 }
