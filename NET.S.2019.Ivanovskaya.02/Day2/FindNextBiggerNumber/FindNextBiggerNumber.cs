@@ -1,17 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Day2
 {
     public static class FindNextBiggerNumber
     {
-        public static int? FindNextBiggerThan(int number)
+        /// <summary>
+        /// Returns the nearest largest integer consisting of the digits of the original number, 
+        /// and null if no such number exists.
+        /// </summary>
+        /// <param name="number">Input number.</param>
+        /// <param name="time">Returns TimeSpan of finding number.</param>
+        /// <returns></returns>
+        public static int? FindNextBiggerThan(int number, out TimeSpan time)
         {
+            time = new TimeSpan();
+
             if (number == int.MaxValue) return null;
             if (number < 0) throw new ArgumentException();
+            
+            Stopwatch stopwatch = new Stopwatch();
 
             int[] array = new int[number.ToString().Length];
             int length = array.Length;
@@ -23,6 +31,8 @@ namespace Day2
 
             int i;
             bool swap = false;
+
+            stopwatch.Start();
 
             for (i = length - 1; i > 0; i--)
             {
@@ -46,6 +56,12 @@ namespace Day2
                     break;
                 }
             }
+
+            stopwatch.Stop();
+            time = stopwatch.Elapsed;
+
+            Console.WriteLine("TimeSpan of given number: {0:00}:{1:00}:{2:00}.{3:00}",
+            time.Hours, time.Minutes, time.Seconds, time.Milliseconds / 10);
 
             int result = int.Parse(string.Join("", array));
 

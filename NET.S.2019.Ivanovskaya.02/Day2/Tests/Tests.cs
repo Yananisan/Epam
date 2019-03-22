@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace Day2.Tests
 {
@@ -17,7 +18,7 @@ namespace Day2.Tests
         [TestCase(3456432, ExpectedResult = 3462345)]
         [TestCase(10, ExpectedResult = -1)]
         [TestCase(20, ExpectedResult = -1)]
-        public int? NextBiggerThanTests(int number) => FindNextBiggerNumber.FindNextBiggerThan(number);
+        public int? NextBiggerThanTests(int number) => FindNextBiggerNumber.FindNextBiggerThan(number, out TimeSpan time);
 
         #endregion
 
