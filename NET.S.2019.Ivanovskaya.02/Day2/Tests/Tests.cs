@@ -58,6 +58,15 @@ namespace Day2.Tests
             Assert.AreEqual(expected, actual, precision);
         }
 
+        [TestCase(8, 15, -7, -5)]
+        [TestCase(8, 15, -0.6, -0.1)]
+        public void FindNthRoot_Number_Degree_Precision_ArgumentOutOfRangeException(double number, int degree,
+            double precision, double expected)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => FindNthRootClass.FindNthRoot(number, degree, precision));
+        }
+
+
         #endregion
 
     }
