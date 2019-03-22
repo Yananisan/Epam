@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="FilterDigit.cs" />
     <Compile Include="FindNextBiggerNumber.cs" />
+    <Compile Include="FindNthRoot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\Tests.cs" />
   </ItemGroup>
