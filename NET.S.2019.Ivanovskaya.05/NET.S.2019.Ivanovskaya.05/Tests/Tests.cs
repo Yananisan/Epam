@@ -6,6 +6,75 @@ namespace NET.S._2019.Ivanovskaya._05.Tests
 {
     class Tests
     {
+        #region Overloaded operations
+
+        [TestCase]
+        public void Polynomial_Sum_IsCorrect()
+        {
+            Polynomial FisrtOp = new Polynomial(1, 2, 3);
+            Polynomial SecondOp = new Polynomial(2, 3, 4);
+            Polynomial expected = new Polynomial(3, 5, 7);
+
+            Polynomial result = FisrtOp + SecondOp;
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestCase]
+        public void Polynomial_SumPolyAndNumber_IsCorrect()
+        {
+            Polynomial FisrtOp = new Polynomial(1, 2, 3);
+            double SecondOp = 2;
+            Polynomial expected = new Polynomial(3, 2, 3);
+
+            Polynomial result = FisrtOp + SecondOp;
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestCase]
+        public void Polynomial_Subtr_IsCorrect()
+        {
+            Polynomial FisrtOp = new Polynomial(1, 3, 7);
+            Polynomial SecondOp = new Polynomial(2, 2, 4);
+            Polynomial expected = new Polynomial(-1, 1, 3);
+
+            Polynomial result = FisrtOp - SecondOp;
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestCase]
+        public void Polynomial_SubtrPolyAndNumber_IsCorrect()
+        {
+            Polynomial FisrtOp = new Polynomial(1, 2, 3);
+            double SecondOp = 2;
+            Polynomial expected = new Polynomial(-1, 2, 3);
+
+            Polynomial result = FisrtOp - SecondOp;
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestCase]
+        public void Polynomial_Mult_IsCorrect()
+        {
+            Polynomial FisrtOp = new Polynomial(1, 2, 3);
+            Polynomial SecondOp = new Polynomial(2, 3, 4);
+            Polynomial expected = new Polynomial(2, 7, 16, 17, 12);
+
+            Polynomial result = FisrtOp * SecondOp;
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestCase]
+        public void Polynomial_MultPolyAndDouble_IsCorrect()
+        {
+            Polynomial FisrtOp = new Polynomial(1, 2, 3);
+            double SecondOp = 2;
+            Polynomial expected = new Polynomial(2, 4, 6);
+
+            Polynomial result = FisrtOp * SecondOp;
+            Assert.AreEqual(expected, result);
+        }
+
+        #endregion
 
         #region ToString
 
@@ -87,6 +156,17 @@ namespace NET.S._2019.Ivanovskaya._05.Tests
         {
             Polynomial lhs = new Polynomial(1, 2, 3);
             Polynomial rhs = new Polynomial(2, 3, 4);
+            bool expected = false;
+
+            bool result = lhs.Equals(rhs);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestCase]
+        public void Polynomial_Object_Equals_IsNotEqual()
+        {
+            Polynomial lhs = new Polynomial(1, 2, 3);
+            object rhs = new object[ 50, 234, 123 ];
             bool expected = false;
 
             bool result = lhs.Equals(rhs);

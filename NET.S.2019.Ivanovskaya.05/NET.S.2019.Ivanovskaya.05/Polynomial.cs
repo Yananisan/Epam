@@ -8,10 +8,15 @@ namespace NET.S._2019.Ivanovskaya._05
 
         private readonly double[] _coefficients;
 
-        #region Clone
 
+        #region Clone
+        
         object ICloneable.Clone() => Clone();
 
+        /// <summary>
+        /// Realization of IClonable
+        /// </summary>
+        /// <returns></returns>
         public Polynomial Clone()
         {
             return new Polynomial(_coefficients);
@@ -19,6 +24,10 @@ namespace NET.S._2019.Ivanovskaya._05
 
         #endregion
 
+        /// <summary>
+        /// Constructor for Polynomial class
+        /// </summary>
+        /// <param name="coefficients">Coefficients of polynomial</param>
         public Polynomial(params double[] coefficients)
         {
             if (coefficients == null)
@@ -34,6 +43,9 @@ namespace NET.S._2019.Ivanovskaya._05
             _coefficients = coefficients;
         }
 
+        /// <summary>
+        /// Returns the length of the Polynomial.
+        /// </summary>
         public int Length
         {
             get
@@ -42,6 +54,11 @@ namespace NET.S._2019.Ivanovskaya._05
             }
         }
 
+        /// <summary>
+        /// Indexer of Polynomial class
+        /// </summary>
+        /// <param name="index">Current index</param>
+        /// <returns>Current polynomial value</returns>
         public double this[int index]
         {
             get
@@ -61,18 +78,15 @@ namespace NET.S._2019.Ivanovskaya._05
             }
         }
 
-        public int Power
-        {
-            get
-            {
-                return _coefficients.Length;
-            }
-        }
 
         #region Overriding Object methods: ToString, GetHashCode, Equals, Finalize
 
         #region ToString
 
+        /// <summary>
+        /// Override ToString Method
+        /// </summary>
+        /// <returns>Object in string format</returns>
         public override string ToString()
         {
             if (this == null)
@@ -82,7 +96,7 @@ namespace NET.S._2019.Ivanovskaya._05
 
             StringBuilder result = new StringBuilder();
 
-            for (int i = this.Power - 1; i >= 0; i--)
+            for (int i = this.Length - 1; i >= 0; i--)
             {
                 if (i == 0)
                 {
@@ -115,6 +129,10 @@ namespace NET.S._2019.Ivanovskaya._05
 
         #region GetHashCode
 
+        /// <summary>
+        /// Override GetHashCodeMethod
+        /// </summary>
+        /// <returns>Object's HashCode</returns>
         public override int GetHashCode()
         {
             int result = 0;
@@ -125,7 +143,7 @@ namespace NET.S._2019.Ivanovskaya._05
             return result;
         }
 
-        public int ShiftAndWrap(int value, int positions)
+        private int ShiftAndWrap(int value, int positions)
         {
             positions = positions & 0x1F;
 
@@ -139,31 +157,14 @@ namespace NET.S._2019.Ivanovskaya._05
 
         #endregion
 
+
         #region Equals
 
-        public bool Equals(Polynomial other)
-        {
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            if (this is null || other is null)
-            {
-                return false;
-            }
-
-            for (int i = 0; i < other.Length; i++)
-            {
-                if (other[i] != _coefficients[i])
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
+        /// <summary>
+        /// Override Equals method
+        /// </summary>
+        /// <param name="obj">Object to compare</param>
+        /// <returns>Is object equal or not (true or false)</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(this, obj))
@@ -181,15 +182,26 @@ namespace NET.S._2019.Ivanovskaya._05
                 return false;
             }
 
-            return Equals((Polynomial)obj);
+            for (int i = 0; i < ((Polynomial)obj).Length; i++)
+            {
+                if (((Polynomial)obj)[i] != _coefficients[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         #endregion
 
         #region Finalize(Dispose)
 
-        private bool _isDisposed;
+        private bool _isDisposed = false;
 
+        /// <summary>
+        /// IDisposable realization
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -199,11 +211,213 @@ namespace NET.S._2019.Ivanovskaya._05
         {
             if (_isDisposed) return;
             if (flag) GC.SuppressFinalize(this);
+            _isDisposed = true;
         }
 
         ~Polynomial()
         {
             this.Dispose(false);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Overloaded operations
+
+        public static Polynomial operator +(Polynomial FirstOp, Polynomial SecondOp) => Add(FirstOp, SecondOp);
+        public static Polynomial operator +(Polynomial FirstOp, double SecondOp) => Add(FirstOp, SecondOp);
+        public static Polynomial operator +(double FirstOp, Polynomial SecondOp) => Add(FirstOp, SecondOp);
+        public static Polynomial operator -(Polynomial FirstOp, Polynomial SecondOp) => Subtract(FirstOp, SecondOp);
+        public static Polynomial operator -(Polynomial FirstOp, double SecondOp) => Subtract(FirstOp, SecondOp);
+        public static Polynomial operator -(double FirstOp, Polynomial SecondOp) => Subtract(FirstOp, SecondOp);
+        public static Polynomial operator *(Polynomial FirstOp, Polynomial SecondOp) => Multiply(FirstOp, SecondOp);
+        public static Polynomial operator *(Polynomial FirstOp, double SecondOp) => Multiply(FirstOp, SecondOp);
+        public static Polynomial operator *(double FirstOp, Polynomial SecondOp) => Multiply(FirstOp, SecondOp);
+        public static bool operator ==(Polynomial FirstOp, Polynomial SecondOp) => Equals(FirstOp, SecondOp);
+        public static bool operator !=(Polynomial FirstOp, Polynomial SecondOp) => !Equals(FirstOp, SecondOp);
+
+        #region Preparation
+
+        private const int SummingSign = 1;
+        private const int SubtractionSign = -1;
+
+        private static double[] ToPolyArray(double[] FirstOp, double[] SecondOp)
+            => new double[(FirstOp.Length > SecondOp.Length) ? FirstOp.Length : SecondOp.Length];
+
+        private static void CheckInput(Polynomial poly)
+        {
+            if (poly == null)
+            {
+                throw new ArgumentNullException($"{nameof(poly)} is null!");
+            }
+
+            if (poly.Length == 0)
+            {
+                throw new ArgumentException($"{nameof(poly)} is empty!");
+            }
+        }
+
+        private static void CheckInput(Polynomial poly1, Polynomial poly2)
+        {
+            CheckInput(poly1);
+            CheckInput(poly2);
+        }
+
+        private static double[] GetSumSubtrResult(double[] result, double[] FirstOp, double[] SecondOp, int sign)
+        {
+            FirstOp.CopyTo(result, 0);
+
+            for (int i = 0; i < result.Length; i++)
+            {
+                result[i] += SecondOp[i] * sign;
+            }
+
+            return result;
+        }
+
+        private static double[] GetSumSubtrResult(double[] result, double FirstOp, double[] SecondOp, int sign)
+        {
+            SecondOp.CopyTo(result, 0);
+
+            result[0] += FirstOp * sign;
+
+            return result;
+        }
+
+        private static double[] GetSumSubtrResult(double[] result, double[] FirstOp, double SecondOp, int sign)
+        {
+            FirstOp.CopyTo(result, 0);
+
+            result[0] += SecondOp * sign;
+
+            return result;
+        }
+
+        private static double[] GetMultuplyResult(double[] result, double[] FirstOp, double[] SecondOp)
+        {
+            for (int i = 0; i < FirstOp.Length; ++i)
+            {
+                for (int j = 0; j < SecondOp.Length; ++j)
+                {
+                    result[i + j] += FirstOp[i] * SecondOp[j];
+                }
+            }
+
+            return result;
+        }
+
+        private static double[] GetMultuplyResult(double[] result, double FirstOp, double[] SecondOp)
+        {
+            for (int i = 0; i < SecondOp.Length; i++)
+            {
+                result[i] += SecondOp[i] * FirstOp;
+            }
+
+            return result;
+        }
+
+        private static double[] GetMultuplyResult(double[] result, double[] FirstOp, double SecondOp)
+        {
+            for (int i = 0; i < FirstOp.Length; i++)
+            {
+                result[i] += FirstOp[i] * SecondOp;
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region Add
+
+        public static Polynomial Add(Polynomial FirstOp, Polynomial SecondOp)
+        {
+            CheckInput(FirstOp, SecondOp);
+
+            double[] result = ToPolyArray(FirstOp._coefficients, SecondOp._coefficients);
+
+            return new Polynomial(GetSumSubtrResult(result, FirstOp._coefficients, SecondOp._coefficients, SummingSign));
+        }
+
+        public static Polynomial Add(Polynomial FirstOp, double SecondOp)
+        {
+            CheckInput(FirstOp);
+
+            double[] result = new double[FirstOp.Length];
+
+            return new Polynomial(GetSumSubtrResult(result, FirstOp._coefficients, SecondOp, SummingSign));
+        }
+
+        public static Polynomial Add(double FirstOp, Polynomial SecondOp)
+        {
+            CheckInput(SecondOp);
+
+            double[] result = new double[SecondOp.Length];
+
+            return new Polynomial(GetSumSubtrResult(result, FirstOp, SecondOp._coefficients, SummingSign));
+        }
+
+        #endregion
+
+        #region Subtract
+
+        public static Polynomial Subtract(Polynomial FirstOp, Polynomial SecondOp)
+        {
+            CheckInput(FirstOp, SecondOp);
+
+            double[] result = ToPolyArray(FirstOp._coefficients, SecondOp._coefficients);
+
+            return new Polynomial(GetSumSubtrResult(result, FirstOp._coefficients, SecondOp._coefficients, SubtractionSign));
+        }
+
+        public static Polynomial Subtract(Polynomial FirstOp, double SecondOp)
+        {
+            CheckInput(FirstOp);
+
+            double[] result = new double[FirstOp.Length];
+
+            return new Polynomial(GetSumSubtrResult(result, FirstOp._coefficients, SecondOp, SubtractionSign));
+        }
+
+        public static Polynomial Subtract(double FirstOp, Polynomial SecondOp)
+        {
+            CheckInput(SecondOp);
+
+            double[] result = new double[SecondOp.Length];
+
+            return new Polynomial(GetSumSubtrResult(result, FirstOp, SecondOp._coefficients, SubtractionSign));
+        }
+
+        #endregion
+
+        #region Multiply
+
+        public static Polynomial Multiply(Polynomial FirstOP, Polynomial SecondOp)
+        {
+            CheckInput(FirstOP, SecondOp);
+
+            double[] result = new double[FirstOP.Length + SecondOp.Length - 1];
+
+            return new Polynomial(GetMultuplyResult(result, FirstOP._coefficients, SecondOp._coefficients));
+        }
+
+        public static Polynomial Multiply(Polynomial FirstOP, double SecondOp)
+        {
+            CheckInput(FirstOP);
+
+            double[] result = new double[FirstOP.Length];
+
+            return new Polynomial(GetMultuplyResult(result, FirstOP._coefficients, SecondOp));
+        }
+
+        public static Polynomial Multiply(double FirstOP, Polynomial SecondOp)
+        {
+            CheckInput(SecondOp);
+
+            double[] result = new double[SecondOp.Length];
+
+            return new Polynomial(GetMultuplyResult(result, FirstOP, SecondOp._coefficients));
         }
 
         #endregion
