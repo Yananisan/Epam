@@ -331,7 +331,7 @@ namespace NET.S._2019.Ivanovskaya._05
 
         #region Add
 
-        public static Polynomial Add(Polynomial FirstOp, Polynomial SecondOp)
+        private static Polynomial Add(Polynomial FirstOp, Polynomial SecondOp)
         {
             CheckInput(FirstOp, SecondOp);
 
@@ -340,7 +340,7 @@ namespace NET.S._2019.Ivanovskaya._05
             return new Polynomial(GetSumSubtrResult(result, FirstOp._coefficients, SecondOp._coefficients, SummingSign));
         }
 
-        public static Polynomial Add(Polynomial FirstOp, double SecondOp)
+        private static Polynomial Add(Polynomial FirstOp, double SecondOp)
         {
             CheckInput(FirstOp);
 
@@ -349,7 +349,7 @@ namespace NET.S._2019.Ivanovskaya._05
             return new Polynomial(GetSumSubtrResult(result, FirstOp._coefficients, SecondOp, SummingSign));
         }
 
-        public static Polynomial Add(double FirstOp, Polynomial SecondOp)
+        private static Polynomial Add(double FirstOp, Polynomial SecondOp)
         {
             CheckInput(SecondOp);
 
@@ -362,7 +362,7 @@ namespace NET.S._2019.Ivanovskaya._05
 
         #region Subtract
 
-        public static Polynomial Subtract(Polynomial FirstOp, Polynomial SecondOp)
+        private static Polynomial Subtract(Polynomial FirstOp, Polynomial SecondOp)
         {
             CheckInput(FirstOp, SecondOp);
 
@@ -371,7 +371,7 @@ namespace NET.S._2019.Ivanovskaya._05
             return new Polynomial(GetSumSubtrResult(result, FirstOp._coefficients, SecondOp._coefficients, SubtractionSign));
         }
 
-        public static Polynomial Subtract(Polynomial FirstOp, double SecondOp)
+        private static Polynomial Subtract(Polynomial FirstOp, double SecondOp)
         {
             CheckInput(FirstOp);
 
@@ -380,7 +380,7 @@ namespace NET.S._2019.Ivanovskaya._05
             return new Polynomial(GetSumSubtrResult(result, FirstOp._coefficients, SecondOp, SubtractionSign));
         }
 
-        public static Polynomial Subtract(double FirstOp, Polynomial SecondOp)
+        private static Polynomial Subtract(double FirstOp, Polynomial SecondOp)
         {
             CheckInput(SecondOp);
 
@@ -393,7 +393,7 @@ namespace NET.S._2019.Ivanovskaya._05
 
         #region Multiply
 
-        public static Polynomial Multiply(Polynomial FirstOP, Polynomial SecondOp)
+        private static Polynomial Multiply(Polynomial FirstOP, Polynomial SecondOp)
         {
             CheckInput(FirstOP, SecondOp);
 
@@ -402,7 +402,7 @@ namespace NET.S._2019.Ivanovskaya._05
             return new Polynomial(GetMultuplyResult(result, FirstOP._coefficients, SecondOp._coefficients));
         }
 
-        public static Polynomial Multiply(Polynomial FirstOP, double SecondOp)
+        private static Polynomial Multiply(Polynomial FirstOP, double SecondOp)
         {
             CheckInput(FirstOP);
 
@@ -411,7 +411,7 @@ namespace NET.S._2019.Ivanovskaya._05
             return new Polynomial(GetMultuplyResult(result, FirstOP._coefficients, SecondOp));
         }
 
-        public static Polynomial Multiply(double FirstOP, Polynomial SecondOp)
+        private static Polynomial Multiply(double FirstOP, Polynomial SecondOp)
         {
             CheckInput(SecondOp);
 

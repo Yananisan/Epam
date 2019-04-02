@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 
@@ -6,6 +7,8 @@ namespace NET.S._2019.Ivanovskaya._05.Tests
 {
     class Tests
     {
+        #region Plynomial 
+
         #region Overloaded operations
 
         [TestCase]
@@ -206,6 +209,31 @@ namespace NET.S._2019.Ivanovskaya._05.Tests
             double temp = 0;
 
             Assert.Throws<ArgumentOutOfRangeException>(() => temp = poly[10]);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region JaggedArray
+
+        [Test]
+        public void Sort_By_Min_Element_In_Row_Ascending()
+        {
+            int[][] array = new int[3][] { new int[] { 3, 4, 5 },
+                                           new int[] { 4, 1, 6 },
+                                           new int[] { 10, 12, 15 } };
+
+            JaggedArraySorting jaggedArray = new JaggedArraySorting(array);
+            jaggedArray.SortByMinElementInRowAscending();
+
+            int[][] expectedArray = new int[3][] { new int[] { 4, 1, 6 } ,
+                                                   new int[] { 3, 4, 5 } ,
+                                                   new int[] { 10, 12, 15 } };
+
+            JaggedArraySorting expectedJaggedArray = new JaggedArraySorting(expectedArray);
+
+            Assert.AreEqual(expectedJaggedArray.Array, jaggedArray.Array);
         }
 
         #endregion
