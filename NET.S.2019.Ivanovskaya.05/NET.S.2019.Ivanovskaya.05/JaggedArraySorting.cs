@@ -10,6 +10,10 @@ namespace NET.S._2019.Ivanovskaya._05
     {
         private delegate bool SortType(int[] arr1, int[] arr2);
 
+        /// <summary>
+        /// Class constructor
+        /// </summary>
+        /// <param name="array">Sortable array</param>
         public JaggedArraySorting(int[][] array)
         {
             Array = array ?? throw new ArgumentNullException(nameof(array));
