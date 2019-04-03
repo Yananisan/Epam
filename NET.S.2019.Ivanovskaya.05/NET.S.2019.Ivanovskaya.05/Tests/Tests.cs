@@ -236,6 +236,101 @@ namespace NET.S._2019.Ivanovskaya._05.Tests
             Assert.AreEqual(expectedJaggedArray.Array, jaggedArray.Array);
         }
 
+        [Test]
+        public void Sort_By_Min_Element_In_Row_Descending()
+        {
+            int[][] array = new int[3][] { new int[] { 3, 4, 5 },
+                                           new int[] { 4, 1, 6 },
+                                           new int[] { 10, 12, 15 } };
+
+            JaggedArraySorting jaggedArray = new JaggedArraySorting(array);
+            jaggedArray.SortByMinElementInRowDescending();
+
+            int[][] expectedArray = new int[3][] { new int[] { 10, 12, 15 } ,
+                                                   new int[] { 3, 4, 5 } ,
+                                                   new int[] { 4, 1, 6 } };
+
+            JaggedArraySorting expectedJaggedArray = new JaggedArraySorting(expectedArray);
+
+            Assert.AreEqual(expectedJaggedArray.Array, jaggedArray.Array);
+        }
+
+        [Test]
+        public void Sort_By_Max_Element_In_Row_Ascending()
+        {
+            int[][] array = new int[3][] { new int[] { 3, 4, 5 },
+                                           new int[] { 4, 1, 6 },
+                                           new int[] { 10, 12, 15 } };
+
+            JaggedArraySorting jaggedArray = new JaggedArraySorting(array);
+            jaggedArray.SortByMaxElementInRowAscending();
+
+            int[][] expectedArray = new int[3][] { new int[] { 3, 4, 5 },
+                                                   new int[] { 4, 1, 6 },
+                                                   new int[] { 10, 12, 15 }  };
+
+            JaggedArraySorting expectedJaggedArray = new JaggedArraySorting(expectedArray);
+
+            Assert.AreEqual(expectedJaggedArray.Array, jaggedArray.Array);
+        }
+
+        [Test]
+        public void Sort_By_Max_Element_In_Row_Descending()
+        {
+            int[][] array = new int[3][] { new int[] { 3, 4, 5 },
+                                           new int[] { 4, 1, 6 },
+                                           new int[] { 10, 12, 15 } };
+
+            JaggedArraySorting jaggedArray = new JaggedArraySorting(array);
+            jaggedArray.SortByMaxElementInRowDescending();
+
+            int[][] expectedArray = new int[3][] { new int[] { 10, 12, 15 },
+                                                   new int[] { 4, 1, 6 },
+                                                   new int[] { 3, 4, 5 }  };
+
+            JaggedArraySorting expectedJaggedArray = new JaggedArraySorting(expectedArray);
+
+            Assert.AreEqual(expectedJaggedArray.Array, jaggedArray.Array);
+        }
+
+        [Test]
+        public void Sort_By_Max_Sum_Element_Of_Row()
+        {
+            int[][] array = new int[3][] { new int[] { 3, 4, 5 },
+                                           new int[] { 4, 1, 6 },
+                                           new int[] { 10, 12, 15 } };
+
+            JaggedArraySorting jaggedArray = new JaggedArraySorting(array);
+            jaggedArray.SortByMaxSumElOfRow();
+
+            int[][] expectedArray = new int[3][] { new int[] { 4, 1, 6 },
+                                                   new int[] { 3, 4, 5 },
+                                                   new int[] { 10, 12, 15 }  };
+
+            JaggedArraySorting expectedJaggedArray = new JaggedArraySorting(expectedArray);
+
+            Assert.AreEqual(expectedJaggedArray.Array, jaggedArray.Array);
+        }
+
+        [Test]
+        public void Sort_By_Min_Sum_Element_Of_Row()
+        {
+            int[][] array = new int[3][] { new int[] { 3, 4, 5 },
+                                           new int[] { 4, 1, 6 },
+                                           new int[] { 10, 12, 15 } };
+
+            JaggedArraySorting jaggedArray = new JaggedArraySorting(array);
+            jaggedArray.SortByMinSumElOfRow();
+
+            int[][] expectedArray = new int[3][] { new int[] { 10, 12, 15 },
+                                                   new int[] { 3, 4, 5 },
+                                                   new int[] { 4, 1, 6 }  };
+
+            JaggedArraySorting expectedJaggedArray = new JaggedArraySorting(expectedArray);
+
+            Assert.AreEqual(expectedJaggedArray.Array, jaggedArray.Array);
+        }
+
         #endregion
     }
 }
