@@ -91,5 +91,29 @@ namespace NET.S._2019.Ivanovskaya._03
 
             return b * k;
         }
+
+        private static int GcdFind(out TimeSpan time, Func<int, int, int> func, params int[] array)
+        {
+            time = new TimeSpan();
+            Stopwatch stopwatch = new Stopwatch();
+
+            if (array == null) throw new ArgumentNullException();
+            if (array.Length < 1) throw new ArgumentException();
+            if (array.Length == 1) return array[0];
+
+            stopwatch.Start();
+
+            int result = array[0];
+
+            for (int i = 1; i < array.Length; i++)
+            {
+                result = func(result, array[i]);
+            }
+
+            stopwatch.Stop();
+            time = stopwatch.Elapsed;
+
+            return result;
+        }
     }
 }
