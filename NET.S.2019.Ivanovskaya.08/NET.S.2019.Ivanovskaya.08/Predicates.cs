@@ -1,6 +1,6 @@
-﻿using NET.S._2019.Ivanovskaya._08.Models;
+﻿using Book.Models;
 
-namespace NET.S._2019.Ivanovskaya._08
+namespace Book
 {
     public class TitlePredicate : IPredicate<Book>
     {

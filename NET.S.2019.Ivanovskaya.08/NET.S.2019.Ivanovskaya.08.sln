@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.S.2019.Ivanovskaya.08", "NET.S.2019.Ivanovskaya.08\NET.S.2019.Ivanovskaya.08.csproj", "{98991E56-0F94-4CE6-A7D5-79D3C72BC271}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Book", "NET.S.2019.Ivanovskaya.08\Book.csproj", "{98991E56-0F94-4CE6-A7D5-79D3C72BC271}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankSystem", "BankSystem\BankSystem.csproj", "{507B16AD-3A77-4DBE-AB10-6F49EDD71DC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{98991E56-0F94-4CE6-A7D5-79D3C72BC271}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98991E56-0F94-4CE6-A7D5-79D3C72BC271}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98991E56-0F94-4CE6-A7D5-79D3C72BC271}.Release|Any CPU.Build.0 = Release|Any CPU
+		{507B16AD-3A77-4DBE-AB10-6F49EDD71DC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{507B16AD-3A77-4DBE-AB10-6F49EDD71DC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{507B16AD-3A77-4DBE-AB10-6F49EDD71DC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{507B16AD-3A77-4DBE-AB10-6F49EDD71DC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

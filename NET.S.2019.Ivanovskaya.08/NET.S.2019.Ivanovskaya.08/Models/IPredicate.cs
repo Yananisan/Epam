@@ -1,4 +1,4 @@
-﻿namespace NET.S._2019.Ivanovskaya._08.Models
+﻿namespace Book.Models
 {
     public interface IPredicate<T>
     {

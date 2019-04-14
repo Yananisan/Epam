@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NET.S._2019.Ivanovskaya._08
+namespace Book
 {
     public class Book: IComparable, IEquatable<Book>
     {

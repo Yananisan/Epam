@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using NET.S._2019.Ivanovskaya._08.Models;
+using Book.Models;
 
-namespace NET.S._2019.Ivanovskaya._08
+namespace Book
 {
     public class BookListService: ISortable<IComparer<Book>>, IFindable<IPredicate<Book>>, IEnumerable<Book>
     {     
@@ -82,6 +82,38 @@ namespace NET.S._2019.Ivanovskaya._08
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public List<Book> GetList
+        {
+            get
+            {
+                return bookList;
+            }
+
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                else
+                {
+                    bookList = value;
+                }
+            }
+        }
+
+        public string Print()
+        {
+            string result = string.Empty;
+
+            foreach (Book book in bookList)
+            {
+                result += book.ToString();
+            }
+
+            return result;
         }
     }
 }

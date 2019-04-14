@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace NET.S._2019.Ivanovskaya._08.Models
+namespace Book.Models
 {
     public interface IStorage
     {

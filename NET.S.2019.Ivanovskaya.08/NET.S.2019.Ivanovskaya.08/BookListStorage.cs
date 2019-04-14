@@ -1,12 +1,9 @@
-﻿using NET.S._2019.Ivanovskaya._08.Models;
+﻿using Book.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NET.S._2019.Ivanovskaya._08
+namespace Book
 {
     public class BookListStorage: IStorage
     {
@@ -66,6 +63,5 @@ namespace NET.S._2019.Ivanovskaya._08
                 throw new Exception($"Can't write data to the {nameof(fileName)}", ex);
             }
         }
-
     }
 }
